@@ -1,4 +1,5 @@
 import Swinject
+import Service
 
 final class DependencyProvider {
     static let shared = DependencyProvider()
