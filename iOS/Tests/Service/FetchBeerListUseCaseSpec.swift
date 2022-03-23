@@ -14,14 +14,12 @@ class FetchBeerListUseCaseSpec: QuickSpec {
         describe("FetchBeerListUseCase를 불러오고") {
             beforeEach {
                 beerRepository = MockBeerRepository()
+                fetchBeerListUseCase = FetchBeerListUseCase(
+                    beerRepository: beerRepository
+                )
             }
             
             context("FetchBeerListUseCase를 page: 1과 size: 20으로 execute하면") {
-                beforeEach {
-                    fetchBeerListUseCase = FetchBeerListUseCase(
-                        beerRepository: beerRepository
-                    )
-                }
                 let maybe = Beer(
                     id: 1,
                     name: "Buzz",
