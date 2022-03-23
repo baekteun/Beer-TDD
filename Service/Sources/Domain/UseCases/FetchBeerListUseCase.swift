@@ -7,7 +7,7 @@ public final class FetchBeerListUseCase {
     
     private let beerRepository: BeerRepository
     
-    func execute(page: Int, size: Int) -> AnyPublisher<[Beer], Error> {
+    public func execute(page: Int, size: Int) -> AnyPublisher<[Beer], Error> {
         beerRepository.fetchBeerList(page: page, size: size)
     }
 }
