@@ -23,12 +23,13 @@ class BaseRemote<T: TargetType> {
         callbackQueue: DispatchQueue? = nil,
         isTest: Bool = false
     ) -> AnyPublisher<Response, Error> {
-        if NetworkReachabilityManager.init(host: "https://api.punkapi.com")!.isReachable {
+        if !NetworkReachabilityManager.init(host: "https://api.punkapi.com/v2/beers")!.isReachable {
             return Future<Response, Error> { res in
-                res(.failure(BeerError.error(message: "서버에 접속할 수 없습니다.")))
+                res(.failure(BeerError.error(message: "서버에 연결할 수 없습니다.")))
             }
             .eraseToAnyPublisher()
         }
+        print(isTest)
         return (isTest ? testingProvider : provider).requestPublisher(api, callbackQueue: callbackQueue)
             .mapError { BeerError.error(body: ["status": $0.response?.statusCode ?? 0]) }
             .timeout(120, scheduler: DispatchQueue.main, customError: { BeerError.error(message: "요청시간 만료")} )
