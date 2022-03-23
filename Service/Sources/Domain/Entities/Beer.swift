@@ -7,6 +7,13 @@ public struct Beer: Equatable {
         self.imageUrl = imageUrl
     }
     
+    public init() {
+        self.id = 1
+        self.name = ""
+        self.description = ""
+        self.imageUrl = ""
+    }
+    
     public let id: Int
     public let name: String
     public let description: String
