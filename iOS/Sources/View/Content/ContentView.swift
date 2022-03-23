@@ -1,9 +1,3 @@
-//
-//  ContentView.swift
-//  test
-//
-//  Created by 최형우 on 2022/01/13.
-//
 
 import SwiftUI
 
@@ -17,7 +11,12 @@ struct ContentView: View {
                     Text("BeerList")
                 }
                 .tag(0)
-            
+            SearchBeerView()
+                .tabItem {
+                    Image(systemName: "2.circle")
+                    Text("BeerSearch")
+                }
+                .tag(1)
         }
     }
 }

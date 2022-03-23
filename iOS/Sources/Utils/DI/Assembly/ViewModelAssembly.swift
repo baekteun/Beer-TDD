@@ -10,5 +10,10 @@ final class ViewModelAssembly: Assembly {
             )
         }.inObjectScope(.container)
         
+        container.register(SearchBeerViewModel.self) { r in
+            SearchBeerViewModel(
+                searchBeerUseCase: r.resolve(SearchBeerUseCase.self)!
+            )
+        }
     }
 }
