@@ -1,8 +1,28 @@
 import SwiftUI
 
 struct SearchBeerView: View {
+    @StateObject var viewModel = DependencyProvider.shared.container.resolve(SearchBeerViewModel.self)!
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            ZStack {
+                VStack {
+                    BeerView(beer: viewModel.beer)
+                    Spacer(minLength: 0)
+                }.searchable(text: $viewModel.text)
+                    .onSubmit(of: .search) {
+                        viewModel.apply(.search)
+                    }
+                if viewModel.isLoading {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .scaleEffect(2.0, anchor: .center)
+                }
+            }
+            .navigationTitle("Search By Id")
+            .navigationBarTitleDisplayMode(.large)
+           
+        }
+
     }
 }
 
