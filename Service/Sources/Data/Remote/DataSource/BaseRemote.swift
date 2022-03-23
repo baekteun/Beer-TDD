@@ -29,7 +29,6 @@ class BaseRemote<T: TargetType> {
             }
             .eraseToAnyPublisher()
         }
-        print(isTest)
         return (isTest ? testingProvider : provider).requestPublisher(api, callbackQueue: callbackQueue)
             .mapError { BeerError.error(body: ["status": $0.response?.statusCode ?? 0]) }
             .timeout(120, scheduler: DispatchQueue.main, customError: { BeerError.error(message: "요청시간 만료")} )
