@@ -10,6 +10,7 @@ public extension TargetDependency.SPM{
     static let AlertToast = TargetDependency.package(product: "AlertToast")
     static let Quick = TargetDependency.package(product: "Quick")
     static let Nimble = TargetDependency.package(product: "Nimble")
+    static let Kingfisher = TargetDependency.package(product: "Kingfisher")
 }
 
 public extension Package {
@@ -32,5 +33,9 @@ public extension Package {
     static let Nimble = Package.remote(
         url: "https://github.com/Quick/Nimble.git",
         requirement: .upToNextMajor(from: "9.0.0")
+    )
+    static let Kingfisher = Package.remote(
+        url: "https://github.com/onevcat/Kingfisher.git",
+        requirement: .upToNextMajor(from: "7.0.0")
     )
 }
