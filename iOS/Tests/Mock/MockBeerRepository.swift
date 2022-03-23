@@ -10,4 +10,8 @@ final class MockBeerRepository: BeerRepository {
     func searchBeer(id: Int) -> AnyPublisher<Beer, Error> {
         beerRemote.searchBeer(id: id, isTest: true)
     }
+    func fetchRandomBeer() -> AnyPublisher<Beer, Error> {
+        beerRemote.fetchRandomBeer(isTest: true
+        )
+    }
 }
