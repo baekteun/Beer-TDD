@@ -10,12 +10,16 @@ struct BeerListView: View {
                 ScrollView {
                     LazyVStack {
                         ForEach(viewModel.beerList, id: \.id) { item in
-                            BeerRowView(beer: item)
-                                .onAppear {
-                                    if item == viewModel.beerList.last {
-                                        viewModel.apply(.loadMoreItem)
+                            NavigationLink {
+                                BeerView(beer: item)
+                            } label: {
+                                BeerRowView(beer: item)
+                                    .onAppear {
+                                        if item == viewModel.beerList.last {
+                                            viewModel.apply(.loadMoreItem)
+                                        }
                                     }
-                                }
+                            }
                         }
                     }
                 }.refreshable {
@@ -26,13 +30,12 @@ struct BeerListView: View {
                         .scaleEffect(2.0, anchor: .center)
                 }
             }
-            .navigationBarTitleDisplayMode(.large)
-            .navigationViewStyle(.stack)
             .navigationTitle(Text("Beer List"))
         }
         .onAppear(perform: {
             viewModel.apply(.onAppear)
         })
+        .navigationViewStyle(.stack)
     }
 }
 
