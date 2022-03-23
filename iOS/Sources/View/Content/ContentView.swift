@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var selection: Int = 0
     var body: some View {
-        Text("Hello, World!")
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        TabView(selection: $selection) {
+            BeerListView()
+                .tabItem {
+                    Image(systemName: "1.circle")
+                    Text("BeerList")
+                }
+                .tag(0)
+            
+        }
     }
 }

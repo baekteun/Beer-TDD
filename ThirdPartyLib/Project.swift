@@ -8,12 +8,14 @@ let project = Project.dynamicFramework(
         .Swinject,
         .AlertToast,
         .Quick,
-        .Nimble
+        .Nimble,
+        .Kingfisher
     ],
-    deploymentTarget: .iOS(targetVersion: "14.0", devices: [.iphone, .ipad]),
+    deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone, .ipad]),
     dependencies: [
         .SPM.CombineMoya,
         .SPM.Swinject,
-        .SPM.AlertToast
+        .SPM.AlertToast,
+        .SPM.Kingfisher
     ]
 )
