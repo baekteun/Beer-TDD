@@ -19,6 +19,7 @@ final class BeerListViewModel: BaseViewModel {
     enum Input {
         case onAppear
         case loadMoreItem
+        case refresh
     }
     
     func apply(_ input: Input) {
@@ -27,11 +28,16 @@ final class BeerListViewModel: BaseViewModel {
             onAppear()
         case .loadMoreItem:
             loadMoreItem()
+        case .refresh:
+            refresh()
         }
     }
     
     // MARK: - Method
-    
+    func reset() {
+        self.beerList = []
+        self.page = 1
+    }
 }
 
 // MARK: - Method
@@ -55,5 +61,16 @@ private extension BeerListViewModel {
             self?.isErrorOccurred = true
             self?.errorMessage = err.localizedDescription
         }
+    }
+    func refresh() {
+        self.reset()
+        addCancellable(publisher: fetchBeerListUseCase.execute(page: page, size: size)) { [weak self] value in
+            self?.beerList = value
+            self?.page += 1
+        } onReceiveFailure: { [weak self] err in
+            self?.isErrorOccurred = true
+            self?.errorMessage = err.localizedDescription
+        }
+
     }
 }
