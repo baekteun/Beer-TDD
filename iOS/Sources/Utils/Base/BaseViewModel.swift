@@ -8,6 +8,10 @@ class BaseViewModel: ObservableObject {
     
     var bag = Set<AnyCancellable>()
     
+    deinit {
+        bag.removeAll()
+    }
+    
     func addCancellable<T>(
         publisher: AnyPublisher<T, Error>,
         onReceiveValue: @escaping (T) -> Void,
