@@ -13,6 +13,12 @@ public final class UseCaseAssembly: Assembly {
                 beerRepository: r.resolve(BeerRepository.self)!
             )
         }.inObjectScope(.container)
+        
+        container.register(FetchRandomBeerUseCase.self) { r in
+            return FetchRandomBeerUseCase(
+                beerRepository: r.resolve(BeerRepository.self)!
+            )
+        }.inObjectScope(.container)
     }
     public init() {}
 }

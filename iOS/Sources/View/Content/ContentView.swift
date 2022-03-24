@@ -17,6 +17,12 @@ struct ContentView: View {
                     Text("BeerSearch")
                 }
                 .tag(1)
+            RandomBeerView()
+                .tabItem {
+                    Image(systemName: "3.circle")
+                    Text("RandomBeer")
+                }
+                .tag(2)
         }
     }
 }

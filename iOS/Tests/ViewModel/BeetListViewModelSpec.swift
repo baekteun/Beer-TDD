@@ -33,25 +33,13 @@ final class BeetListViewModelSpec: QuickSpec {
                 beforeEach {
                     vm.apply(.loadMoreItem)
                 }
-                it("아이템이 load될때 isListLoading이 true가 된다") {
-                    expect(vm.isListLoading).to(beTrue())
-                }
                 it("beerList의 카운터가 40이 된다.") {
                     expect(vm.beerList.count).toEventually(equal(40), timeout: .seconds(5))
                 }
-                it("아이템이 load되고나서 isListLoading이 false가 된다") {
-                    expect(vm.isListLoading).toEventually(beFalse(), timeout: .seconds(5))
-                }
             }
-            context("PullToRefresh를 한다면") {
+            context("PullDownRefresh를 한다면") {
                 beforeEach {
                     vm.apply(.refresh)
-                }
-                it("아이템을 fetch하는동안 beerList의 count가 0이 된다") {
-                    expect(vm.beerList.count).to(equal(0))
-                }
-                it("beerList의 page가 1이 된다") {
-                    expect(vm.page).to(equal(1))
                 }
                 it("아이템을 refresh한 다음 page가 2가 된다") {
                     expect(vm.page).toEventually(equal(2), timeout: .seconds(5))

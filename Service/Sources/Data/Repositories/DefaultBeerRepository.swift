@@ -7,6 +7,9 @@ final class DefaultBeerRepository: BeerRepository {
         beerRemote.fetchBeerList(page: page, size: size)
     }
     func searchBeer(id: Int) -> AnyPublisher<Beer, Error> {
-        beerRemote.searchBeer(id: id, isTest: false)
+        beerRemote.searchBeer(id: id)
+    }
+    func fetchRandomBeer() -> AnyPublisher<Beer, Error> {
+        beerRemote.fetchRandomBeer()
     }
 }

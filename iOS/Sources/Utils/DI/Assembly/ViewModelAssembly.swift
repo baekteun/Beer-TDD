@@ -14,6 +14,12 @@ final class ViewModelAssembly: Assembly {
             SearchBeerViewModel(
                 searchBeerUseCase: r.resolve(SearchBeerUseCase.self)!
             )
-        }
+        }.inObjectScope(.container)
+        
+        container.register(RandomBeerViewModel.self) { r in
+            RandomBeerViewModel(
+                fetchRandomBeerUseCase: r.resolve(FetchRandomBeerUseCase.self)!
+            )
+        }.inObjectScope(.container)
     }
 }
